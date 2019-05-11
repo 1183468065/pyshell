@@ -56,10 +56,15 @@ def getImg(datalist, path):
         for i in list:
             if i.get('thumbURL') != None:
                 print('正在下载：%s' % i.get('thumbURL'))
-                urllib.urlretrieve(i.get('thumbURL'), path + '%d.jpg' % x)
+                # 该方法直接将图片下载到本地，加上回调函数，可以显示当前下载进度什么的
+                urllib.urlretrieve(i.get('thumbURL'), path + '%d.jpg' % x, retrieveback())
                 x += 1
             else:
                 print('图片链接不存在')
+
+
+def retrieveback():
+    print "下载完成"
 
 
 if __name__ == '__main__':
